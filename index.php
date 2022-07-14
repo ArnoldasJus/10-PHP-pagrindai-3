@@ -33,7 +33,6 @@ slaptažodis - "123456". Jei sugalvota kombinacija sutampa su tuo, kas įvesta �
                 } else {
                     echo "Įvesti duomenys neteisingi";
                 }
-
             }
         
         ?>
