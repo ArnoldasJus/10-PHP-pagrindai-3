@@ -14,24 +14,31 @@ slaptažodis - "123456". Jei sugalvota kombinacija sutampa su tuo, kas įvesta �
    *Jei duomenys yra įvesti teisingi, vartotojas nukreipiamas į failą - manopaskyra.php.
    *Kitu atveju, vartotojas nukreipiamas į puslapį - 404.php -->
 
-   <form method="GET" action="index.php">
-        <input id="vardas" class="vardas" name="vardas" value="<?php echo isset($_GET["vardas"]) ? $_GET["vardas"] : ""  ; ?>"  />
-        <input id="slaptazodis" class="slaptazodis" name="slaptazodis" value="<?php echo isset($_GET["slaptazodis"]) ? $_GET["slaptazodis"] : ""  ; ?>" />
+   <form method="POST" action="index.php">
+        <input name="vardas">
+        <input name="slaptazodis" type="password">
         <button name="patvirtinti" type="submit">Prisijungti</button>
     </form>
 
     <div>
         <?php 
 
-            if(isset($_GET["patvirtinti"])) {
-                $vardas = $_GET["vardas"];
-                $slaptazodis = $_GET["slaptazodis"];
+            $vardas = 'admin';
+            $slaptazodis = '123456';
+
+            if(isset($_POST["patvirtinti"])) {
+                $input_vardas = $_POST["vardas"];
+                $input_slaptazodis = $_POST["slaptazodis"];
             
                 
-                if($vardas == "admin" && $slaptazodis == "123456") {
-                    echo "Prisijungėte sėkmingai";
+                if($input_vardas == $vardas && $input_slaptazodis == $slaptazodis) {
+                    //echo "Prisijungėte sėkmingai";
+                    // nukreipimas i mano paskyra.php
+                    header('Location: manopaskyra.php');
                 } else {
-                    echo "Įvesti duomenys neteisingi";
+                    //echo "Įvesti duomenys neteisingi";
+                    // nukreipimas i 404
+                    header('Location: 404.php');
                 }
             }
         
